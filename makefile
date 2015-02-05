@@ -5,6 +5,7 @@ HelloWorld: Main
 	
 SocketTest: UDPSock
 	gcc -o bin/socket.out -lc obj/UDPSock.o
+	cp bin/socket.out bin/socketRec.out
 
 Main:
 	gcc -o obj/ComS454Proj1.o -c src/ComS454Proj1.c
