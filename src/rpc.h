@@ -32,6 +32,7 @@ typedef enum {
 } Status;
 typedef struct sockaddr_in SocketAddress;
 
+
 Status DoOperation (Message *message, Message *reply, int s, SocketAddress serverSA);
 Status GetRequest (Message *callMessage, int s, SocketAddress *clientSA);
 Status SendReply (Message *replyMessage, int s, SocketAddress clientSA);
