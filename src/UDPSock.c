@@ -1,44 +1,4 @@
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <netdb.h>
-#include <netinet/in.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <arpa/inet.h>
-
-struct hostent *gethostbyname() ;
-void printSA(struct sockaddr_in sa) ;
-void makeDestSA(struct sockaddr_in * sa, char *hostname, int port) ;
-void makeLocalSA(struct sockaddr_in *sa) ;
-void receiver(int port) ;
-void sender(char *message1, char *message2,char *machine, int port);
-
-#define RECIPIENT_PORT 1234
-#define SIZE 1000
-
-/* main for sender and receiver - to send give s machine messag1 and message2
-	- to receive give r
-	*/
-void main(int argc,char **argv)
-{
-	int port = RECIPIENT_PORT;
-
-	if(argc <= 1){
-		printf("Usage:s(end) ...or r(eceive) ??\n");
-		exit(1);
-	}
-	if(*argv[1]  == 's'){
-		if(argc <=2) {
-			printf("Usage: s  machine message1 message2\n");
-			exit(1);
-		}
-		sender(argv[3], argv[4], argv[2],port);
-	}else if(*argv[1]  == 'r') {
-		receiver(port);
-		}
-	else printf("send machine or receive??\n");
-}
+#include "UDPSock.h"
 
 /*print a socket address */
 void printSA(struct sockaddr_in sa)
@@ -182,6 +142,6 @@ int anyThingThere(int s)
 	read_mask = (1<<s);
 	if((n = select(32, (fd_set *)&read_mask, 0, 0, &timeout))<0)
 		perror("Select fail:\n");
-	else printf("n = %d\n");
+	else printf("n = %d\n", n);
 	return n;
 }
