@@ -21,6 +21,8 @@
 
 
 #define SIZE 1000
+int RECEIVER_PORT = IPPORT_RESERVED + 0230;
+
 typedef struct {
 	unsigned int length;
 	unsigned char data[SIZE];
