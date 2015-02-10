@@ -1,10 +1,22 @@
 rpc:	RPC HelloWorld
 
+runReceiver: receiver
+	bin/receiver.out r
+
+runSender: Sender
+	bin/sender.out s
+
+receiver: Receiver RPC UDPSock Main
+	gcc -o bin/receiver.out -lc obj/ComS454Proj1.o obj/UDPSock.o obj/rpc.o obj/receiver.o
+
+Receiver: RPC
+	gcc -w -o obj/receiver.o -c src/receiver.c
+
 dir:
 	mkdir obj bin
 
-HelloWorld: Main
-	gcc -o bin/a.out -lc obj/ComS454Proj1.o obj/rpc.o obj/UDPSock.o
+Sender: Main Receiver RPC UDPSock
+	gcc -o bin/sender.out -lc obj/ComS454Proj1.o obj/rpc.o obj/UDPSock.o obj/receiver.o
 	
 SocketTest: UDPSock
 	gcc -o bin/socket.out -lc obj/UDPSock.o

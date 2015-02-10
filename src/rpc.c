@@ -2,20 +2,21 @@
 
 
 
+
 Status DoOperation(Message *message, Message *reply, int s,
 		SocketAddress serverSA) {
 
 	printf("DoOperation\n");
 	printf("Send outbound message...\n");
 	UDPsend(s, message, serverSA);
-	UDPreceive(s, reply, serverSA);
+	UDPreceive(s, reply, &serverSA);
 }
 
 Status  UDPsend(int s, Message *m, SocketAddress destination){
 /**Create local address **/
 	char* msg;
 	int n;
-	struct sockaddr_in mySocketAddress, yourSocketAddress;
+	struct sockaddr_in mySocketAddress;
 
 	if ((s = socket(AF_INET, SOCK_DGRAM, 0)) < 0) {
 		perror("socket failed");
@@ -35,9 +36,8 @@ Status  UDPsend(int s, Message *m, SocketAddress destination){
 	printSA(mySocketAddress);
 	printf("Server Address:\n");
 	printSA(destination);
-
-	strcpy(msg,m->data);
-		if( (n = sendto(s, msg, strlen(msg), 0, (struct sockaddr *)&yourSocketAddress,
+	printf("Data: %s\t%d\n", m->data, m->length);
+		if( (n = sendto(s, m->data, m->length, 0, (struct sockaddr *)&destination,
 			sizeof(struct sockaddr_in))) < 0)
 			perror("Send failed\n");
 		if(n != strlen(m)) printf("sent %d\n",n);
@@ -57,7 +57,7 @@ Status  UDPreceive(int s, Message *m, SocketAddress *origin)
 		perror("socket failed");
 		return BAD;
 	}
-	makeReceiverSA(&mySocketAddress, RECIPIENT_PORT);
+	makeReceiverSA(&mySocketAddress, RECEIVER_PORT);
 
 	if( bind(s, (struct sockaddr *)&mySocketAddress, sizeof(struct sockaddr_in))!= 0){
 		perror("Bind failed\n");

@@ -24,7 +24,6 @@ void makeLocalSA(struct sockaddr_in *sa) ;
 void receiver(int port) ;
 void sender(char *message1, char *message2,char *machine, int port);
 
-#define RECIPIENT_PORT 1234
 #define SIZE 1000
 
 #endif /* UDPSOCK_H_ */

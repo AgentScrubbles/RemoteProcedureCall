@@ -12,6 +12,7 @@
 #include <stdlib.h>
 #include "UDPSock.h"
 #include "rpc.h"
+#include "receiver.h"
 
 
 void SendTest();
@@ -37,7 +38,7 @@ void main(int argc,char **argv)
 		sender(argv[3], argv[4], argv[2],port);**/
 		SendTest();
 	}else if(*argv[1]  == 'r') {
-		receiver(port);
+		responderRunner();
 		}
 	else printf("send machine or receive??\n");
 }
@@ -45,14 +46,18 @@ void main(int argc,char **argv)
 
 void SendTest()
 {
-	Message *message = malloc(sizeof(Message));
-	message->length = 100;
+
+	Message message;
+	unsigned char myString [1000] = "This is my string";
+
+	message.data = "This is my string";
+	message.length = strlen(message.data);
 	/**message->data = (unsigned char*)malloc(sizeof(unsigned char) * message->length);**/
 	Message *reply = malloc(sizeof(Message));
 	int s = 0; /** Don't know what this is... **/
 	SocketAddress server;
-	char* host = "pyrite.cs.iastate.edu";
+	char* host = "localhost";
 	int port = IPPORT_RESERVED + 0230;
 	makeDestSA(&server, host, port);
-	DoOperation (message, reply, s, server);
+	DoOperation (&message, reply, s, server);
 }

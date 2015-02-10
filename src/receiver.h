@@ -4,10 +4,12 @@
  */
 #include <sched.h>
 #include "rpc.h"
+#define _GNU_SOURCE
+#include <linux/sched.h>
 
 
 Status responderRunner();
 
-Status receive(SocketAddress repond, Message* msg);
+Status receive(Message* msg);
 
 
