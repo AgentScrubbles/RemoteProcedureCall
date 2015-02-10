@@ -50,7 +50,7 @@ void SendTest()
 	Message message;
 	unsigned char myString [1000] = "This is my string";
 
-	message.data = "This is my string";
+	message.data = "1234,localhost,This is my string,This is my response.";
 	message.length = strlen(message.data);
 	/**message->data = (unsigned char*)malloc(sizeof(unsigned char) * message->length);**/
 	Message *reply = malloc(sizeof(Message));

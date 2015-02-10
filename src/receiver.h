@@ -10,6 +10,6 @@
 
 Status responderRunner();
 
-Status receive(Message* msg);
+Status receive(void* msg);
 
 
