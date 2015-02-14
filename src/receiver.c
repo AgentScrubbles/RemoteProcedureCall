@@ -71,6 +71,13 @@ int rpcMethod(int arg1, int arg2, int procedureID){
 	case 3:
 		return arg1 / arg2;
 		break;
+	case 4:
+		/** PING **/
+		break;
+	case 5:
+		/** STOP **/
+		exit(0);
+		break;
 	default:
 		return arg1 + arg2;
 		break;
