@@ -50,13 +50,13 @@ void SendTest()
 	Message message;
 	unsigned char myString [1000] = "This is my string";
 
-	message.data = "1234,localhost,This is my string,This is my response.";
+	message.data = "1234,robslaptop.student.iastate.edu,This is my string,This is my response.";
 	message.length = strlen(message.data);
 	/**message->data = (unsigned char*)malloc(sizeof(unsigned char) * message->length);**/
 	Message *reply = malloc(sizeof(Message));
 	int s = 0; /** Don't know what this is... **/
 	SocketAddress server;
-	char* host = "localhost";
+	char* host = "pyrite.cs.iastate.edu";
 	int port = IPPORT_RESERVED + 0230;
 	makeDestSA(&server, host, port);
 	DoOperation (&message, reply, s, server);

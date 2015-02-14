@@ -1,13 +1,18 @@
 rpc:	RPC HelloWorld
 
-runReceiver: receiver
-	bin/receiver.out r
+runRPCClient: RPCClient
+	bin/RPCClient.out 1234 localhost 1213 localhost
+	
+runRPCServer: RPCServer
+	bin/RPCServer.out 1234
 
-runSender: Sender
-	bin/sender.out s
+RPCServer: RPC Receiver
+	gcc -o obj/RPCServer.o -c src/RPCServer.c
+	gcc -o bin/RPCServer.out -lc obj/RPCServer.o obj/rpc.o obj/UDPSock.o  obj/receiver.o
 
-receiver: Receiver RPC UDPSock Main
-	gcc -o bin/receiver.out -lc obj/ComS454Proj1.o obj/UDPSock.o obj/rpc.o obj/receiver.o
+RPCClient: RPC
+	gcc -o obj/RPCClient.o -c src/RPCClient.c
+	gcc -o bin/RPCClient.out -lc obj/RPCClient.o obj/rpc.o obj/UDPSock.o
 
 Receiver: RPC
 	gcc -w -o obj/receiver.o -c src/receiver.c
@@ -18,12 +23,7 @@ dir:
 Sender: Main Receiver RPC UDPSock
 	gcc -o bin/sender.out -lc obj/ComS454Proj1.o obj/rpc.o obj/UDPSock.o obj/receiver.o
 	
-SocketTest: UDPSock
-	gcc -o bin/socket.out -lc obj/UDPSock.o
-	cp bin/socket.out bin/socketRec.out
 
-Main:
-	gcc -w -o obj/ComS454Proj1.o -c src/ComS454Proj1.c
 
 UDPSock:
 	gcc -w -o obj/UDPSock.o -c src/UDPSock.c

@@ -8,7 +8,7 @@
 #include <linux/sched.h>
 
 
-Status responderRunner();
+Status responderRunner(int port);
 
 Status receive(void* msg);
 

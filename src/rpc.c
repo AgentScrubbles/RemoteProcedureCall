@@ -4,13 +4,16 @@
 
 
 Status DoOperation(Message *message, Message *reply, int s,
-		SocketAddress serverSA) {
-
-	printf("DoOperation\n");
-	printf("Send outbound message...\n");
+		SocketAddress serverSA, int localPort) {
+	printf("Sending message:\n\t%s\n\n", message->data);
 	UDPsend(s, message, serverSA);
-	UDPreceive(s, reply, &serverSA, 1234);
-	printf("Response: %s\n", reply->data);
+	UDPreceive(s, reply, &serverSA, localPort);
+	printf("\n\n**RESPONSE RECEIVED**\n");
+	printf("Message:\n\t%s\n", reply->data);
+	RPCMessage replyMessage;
+	unMarshal(&replyMessage, reply);
+	printf("Returned value: %d\n", replyMessage.arg1);
+	printf("*********************\n\n");
 }
 
 Status  UDPsend(int s, Message *m, SocketAddress destination){
@@ -143,3 +146,44 @@ char** str_split(char* a_str, const char a_delim)
     return result;
 }
 
+void marshal(RPCMessage *rm, Message *message)
+{
+	/**
+	 * Style of message will be:
+	 * RETURN PORT, RETURN ADDRESS, RPCID, RPC METHOD, ARG/RET 1, ARG/RET 2, REQUEST/REPLY
+	 */
+
+
+	int size = 0;
+	size += sizeof(rm->machine); /** RETURN PORT **/
+	size += sizeof(',');
+	size += sizeof(rm->port); /** RETURN ADDRESS **/
+	size += sizeof(',');
+	size += sizeof(int); /** RPCID **/
+	size += sizeof(',');
+	size += sizeof(int); /** METHOD ID **/
+	size += sizeof(',');
+	size += sizeof(int); /** ARG 1 **/
+	size += sizeof(',');
+	size += sizeof(int); /** ARG 2 **/
+	size += sizeof(',');
+	size += sizeof(int); /** MESSAGE TYPE **/
+
+	message->length = size;
+	unsigned char buf[size];
+	printf("%s\n", rm->machine);
+	sprintf(buf, "%s,%d,%d,%d,%d,%d,%d,%d", rm->machine, rm->port, rm->RPCId, rm->procedureId, rm->arg1, rm->arg2, rm->messageType);
+	message->data = malloc(sizeof(unsigned char) * size);
+	strcpy(message->data, buf);
+}
+void unMarshal(RPCMessage *rm, Message *message)
+{
+	char** items = str_split(message->data, ',');
+	rm->machine = items[0];
+	rm->port = atoi(items[1]);
+	rm->RPCId = atoi(items[2]);
+	rm->procedureId = atoi(items[3]);
+	rm->arg1 = atoi(items[4]);
+	rm->arg2 = atoi(items[5]);
+	rm->messageType = atoi(items[6]);
+}
