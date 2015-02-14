@@ -76,6 +76,7 @@ int rpcMethod(int arg1, int arg2, int procedureID){
 		break;
 	case 5:
 		/** STOP **/
+		printf("Server stopping...\n\n");
 		exit(0);
 		break;
 	default:
