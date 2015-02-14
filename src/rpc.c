@@ -5,7 +5,8 @@
 
 Status DoOperation(Message *message, Message *reply, int s,
 		SocketAddress serverSA, int localPort) {
-	printf("Sending message:\n\t%s\n\n", message->data);
+	printf("\n\n**SENDING  MESSAGE**\n\t%s\n\n", message->data);
+
 	UDPsend(s, message, serverSA);
 	UDPreceive(s, reply, &serverSA, localPort);
 	printf("\n\n**RESPONSE RECEIVED**\n");
@@ -14,6 +15,7 @@ Status DoOperation(Message *message, Message *reply, int s,
 	unMarshal(&replyMessage, reply);
 	printf("Returned value: %d\n", replyMessage.arg1);
 	printf("*********************\n\n");
+	return OK;
 }
 
 Status  UDPsend(int s, Message *m, SocketAddress destination){

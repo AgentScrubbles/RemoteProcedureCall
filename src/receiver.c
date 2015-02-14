@@ -37,7 +37,7 @@ Status receive(void* msg){
 	printf("\t%d (%d) %d = %d\n", message->rpc.arg1, message->rpc.procedureId, message->rpc.arg2, ret);
 
 	printf("**Making response***\n");
-	sleep(1); /** Simulating a slow response **/
+	sleep(3); /** Simulating a slow response **/
 	SocketAddress destination;
 	makeDestSA(&destination, message->rpc.machine, message->rpc.port);
 	int s = 0;
