@@ -40,7 +40,7 @@ typedef struct sockaddr_in SocketAddress;
 typedef enum{
 	Request = 0,
 	Reply = 1
-}MessageType;
+} MessageType;
 
 typedef struct {
  MessageType messageType;  /* same size as an unsigned int */

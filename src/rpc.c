@@ -13,7 +13,7 @@ Status DoOperation(Message *message, Message *reply, int s,
 	printf("Message:\n\t%s\n", reply->data);
 	RPCMessage replyMessage;
 	unMarshal(&replyMessage, reply);
-	printf("Returned value: %d\n", replyMessage.arg1);
+	printf("\nReturned value: %d\n", replyMessage.arg1);
 	printf("*********************\n\n");
 	return OK;
 }
@@ -165,7 +165,6 @@ void marshal(RPCMessage *rm, Message *message)
 
 	message->length = size;
 	unsigned char buf[size];
-	printf("%s\n", rm->machine);
 	sprintf(buf, "%s,%d,%d,%d,%d,%d,%d,%d", rm->machine, rm->port, rm->RPCId, rm->procedureId, rm->arg1, rm->arg2, rm->messageType);
 	message->data = malloc(sizeof(unsigned char) * size);
 	strcpy(message->data, buf);

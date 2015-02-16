@@ -44,7 +44,6 @@ Status receive(ClientMessage* msg){
 	
 	struct sockaddr_in destination;
 	makeDestSA(&destination, message->rpc.machine, message->rpc.port);
-	printf("After makeDestSA\n");
 	int s = 0;
 	RPCMessage responseMessage;
 	Message responseMsg;
