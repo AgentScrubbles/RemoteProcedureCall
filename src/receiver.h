@@ -10,6 +10,6 @@
 
 Status responderRunner(int port);
 
-Status receive(void* msg);
+Status receive(ClientMessage* msg);
 
 

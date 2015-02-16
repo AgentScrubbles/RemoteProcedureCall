@@ -15,19 +15,19 @@ Status responderRunner(int port)
 	{
 		printf("Listening...\n");
 		ClientMessage* rpc_msg = (ClientMessage*)malloc(sizeof(ClientMessage));
-		Status s = UDPreceive(s, &rpc_msg.msg, rpc_msg.client, port);
+		Status s = UDPreceive(s, &rpc_msg->msg, &rpc_msg->client, port);
 		if(s == BAD) return BAD;
 		ClientMessage rpc;
 		void* child_stack=(void*)malloc(16384);
 		child_stack+=16383;
-		clone(receive, child_stack, CLONE_VM, (void*)rpc_msg);
+		clone(receive, child_stack, CLONE_VM, rpc_msg);
 		
 	}
 	return OK;
 }
 
-Status receive(void* msg){
-	ClientMessage* message = (ClientMessage*)msg;
+Status receive(ClientMessage* msg){
+	ClientMessage* message = msg;
 	printf("\n\n**Message Received**\n\t%s\n", message->msg.data);
 	unMarshal(&message->rpc, &message->msg);
 	printf("Return address: %s\nReturn port: %d\n", message->rpc.machine, message->rpc.port);
@@ -41,8 +41,6 @@ Status receive(void* msg){
 	printf("**Making response***\n");
 	 /** Simulating a slow response **/
 	SocketAddress destination;
-	printf("RPC Machine: %s\n", message->rpc.machine);
-	printf("RPC Port: %s\n", message->rpc.port);
 	sleep(3);
 	makeDestSA(&destination, message->rpc.machine, message->rpc.port);
 	int s = 0;
