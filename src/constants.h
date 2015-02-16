@@ -14,7 +14,7 @@
 #define SERVER_ADDR "localhost"
 
 
-#define CLIENT_PORT IPPORT_RESERVED + 0231
+#define CLIENT_PORT IPPORT_RESERVED + 0234
 #define CLIENT_ADDR "localhost"
 
 
