@@ -13,14 +13,19 @@ void printSA(struct sockaddr_in sa)
 void makeDestSA(struct sockaddr_in * sa, char *hostname, int port)
 {
 	struct hostent *host;
-
+	printf("In MakeDest: %s : %d\nSA loc: %d\n", hostname, port, sa);
 	sa->sin_family = AF_INET;
+	printf("\n\t1");
 	if((host = gethostbyname(hostname))== NULL){
 		printf("Unknown host name\n");
 		exit(-1);
 	}
-	sa-> sin_addr = *(struct in_addr *) (host->h_addr);
+	printf("\n\t2");
+	sa->sin_addr = *(struct in_addr *) (host->h_addr);
+	printf("\n\t3");
 	sa->sin_port = htons(port);
+	printf("\n\t4");
+	printf("Complete MakeDest\n");
 }
 
 /* make a socket address using any of the addressses of this computer

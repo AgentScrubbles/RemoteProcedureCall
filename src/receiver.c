@@ -40,9 +40,11 @@ Status receive(ClientMessage* msg){
 
 	printf("**Making response***\n");
 	 /** Simulating a slow response **/
-	SocketAddress destination;
-	sleep(3);
+	 sleep(1);
+	
+	struct sockaddr_in destination;
 	makeDestSA(&destination, message->rpc.machine, message->rpc.port);
+	printf("After makeDestSA\n");
 	int s = 0;
 	RPCMessage responseMessage;
 	Message responseMsg;
