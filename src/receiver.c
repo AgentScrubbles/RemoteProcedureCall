@@ -51,8 +51,8 @@ Status receive(ClientMessage* msg){
 	responseMessage.RPCId = message->rpc.RPCId;
 	responseMessage.arg1 = ret;
 	responseMessage.arg2 = 0;
-	responseMessage.machine = " "; /** Assume client knows the response **/
-	responseMessage.port = 0; /**Asume client knows the response port **/
+	responseMessage.machine = SERVER_ADDR; /** Assume client knows the response **/
+	responseMessage.port = SERVER_PORT; /**Asume client knows the response port **/
 	responseMessage.procedureId = 0; /**Meaningless on the response **/
 	responseMessage.messageType = Reply;
 	marshal(&responseMessage, &responseMsg);
