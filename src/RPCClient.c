@@ -61,7 +61,7 @@ void main(int argc, char **argv) {
 		marshal(&rpc, &msg);
 		SocketAddress server;
 		makeDestSA(&server, remoteServerAddr, remoteServerPort);
-		DoOperation(&msg, &reply, s, server, rpc.port);
+		DoOperation(&msg, &reply, s, server);
 	}
 }
 

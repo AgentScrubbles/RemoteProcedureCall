@@ -1,10 +1,10 @@
 rpc:	RPC HelloWorld
 
 runRPCClient: RPCClient
-	bin/RPCClient.out 1234 localhost 1213 localhost
+	bin/RPCClient.out
 	
 runRPCServer: RPCServer
-	bin/RPCServer.out 1234
+	bin/RPCServer.out
 
 RPCServer: RPC Receiver
 	gcc -o obj/RPCServer.o -c src/RPCServer.c

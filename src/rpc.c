@@ -148,7 +148,7 @@ void marshal(RPCMessage *rm, Message *message)
 	 * RETURN PORT, RETURN ADDRESS, RPCID, RPC METHOD, ARG/RET 1, ARG/RET 2, REQUEST/REPLY
 	 */
 
-
+	printf("marshalling message\n");
 	int size = 0;
 	size += sizeof(rm->machine); /** RETURN PORT **/
 	size += sizeof(',');

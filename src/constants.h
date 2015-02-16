@@ -11,11 +11,11 @@
 #define CONSTANTS_H_
 
 #define SERVER_PORT IPPORT_RESERVED + 0230
-#define SERVER_ADDR "pyrite.cs.iastate.edu"
+#define SERVER_ADDR "localhost"
 
 
 #define CLIENT_PORT IPPORT_RESERVED + 0231
-#define CLIENT_ADDR "pyrite.cs.iastate.edu"
+#define CLIENT_ADDR "localhost"
 
 
 #endif /* CONSTANTS_H_ */
