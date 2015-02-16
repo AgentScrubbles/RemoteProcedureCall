@@ -17,7 +17,6 @@ Status responderRunner(int port)
 		ClientMessage* rpc_msg = (ClientMessage*)malloc(sizeof(ClientMessage));
 		Status s = UDPreceive(s, &rpc_msg->msg, &rpc_msg->client, port);
 		if(s == BAD) return BAD;
-		ClientMessage rpc;
 		void* child_stack=(void*)malloc(16384);
 		child_stack+=16383;
 		clone(receive, child_stack, CLONE_VM, rpc_msg);
