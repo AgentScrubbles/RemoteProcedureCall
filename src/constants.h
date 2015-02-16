@@ -11,11 +11,11 @@
 #define CONSTANTS_H_
 
 #define SERVER_PORT IPPORT_RESERVED + 0230
-#define SERVER_ADDR "localhost"
+#define SERVER_ADDR "192.168.1.151"
 
 
-#define CLIENT_PORT IPPORT_RESERVED + 0234
-#define CLIENT_ADDR "localhost"
+#define CLIENT_PORT IPPORT_RESERVED + 0230
+#define CLIENT_ADDR "10.24.47.240"
 
 
 #endif /* CONSTANTS_H_ */
