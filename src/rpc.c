@@ -4,11 +4,11 @@
 
 
 Status DoOperation(Message *message, Message *reply, int s,
-		SocketAddress serverSA, int localPort) {
+		SocketAddress serverSA) {
 	printf("\n\n**SENDING  MESSAGE**\n\t%s\n\n", message->data);
 
 	UDPsend(s, message, serverSA);
-	UDPreceive(s, reply, &serverSA, localPort);
+	UDPreceive(s, reply, &serverSA, CLIENT_PORT);
 	printf("\n\n**RESPONSE RECEIVED**\n");
 	printf("Message:\n\t%s\n", reply->data);
 	RPCMessage replyMessage;
@@ -37,13 +37,6 @@ Status  UDPsend(int s, Message *m, SocketAddress destination){
 		close(s);
 		return BAD;
 	}
-/**
-	printf("My address:\n");
-	printSA(mySocketAddress);
-	printf("Server Address:\n");
-	printSA(destination);
-	printf("Data: %s\t%d\n", m->data, m->length);
-	**/
 		if( (n = sendto(s, m->data, m->length, 0, (struct sockaddr *)&destination,
 			sizeof(struct sockaddr_in))) < 0)
 			perror("Send failed\n");

@@ -11,9 +11,13 @@
  * Usage, RPCClient machine port
  * **/
 void main(int argc, char **argv) {
-	char* remoteServerAddr;
-	int remoteServerPort;
+	char* remoteServerAddr = SERVER_ADDR;
+	int remoteServerPort = SERVER_PORT;
 	RPCMessage rpc;
+	rpc.machine = CLIENT_ADDR;
+	rpc.port = CLIENT_PORT;
+
+	/**
 	if (argc <= 1) {
 		rpc.machine = malloc(100);
 		remoteServerAddr = malloc(100);
@@ -31,7 +35,7 @@ void main(int argc, char **argv) {
 		remoteServerAddr = argv[2];
 		rpc.port = atoi(argv[3]);
 		rpc.machine = argv[4];
-	}
+	}**/
 
 	rpc.procedureId = 0;
 	while (rpc.procedureId != 9) {

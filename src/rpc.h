@@ -20,10 +20,9 @@
 #include <stdlib.h>
 
 #include "UDPSock.h"
-
+#include "constants.h"
 
 #define SIZE 1000
-#define RECEIVER_PORT IPPORT_RESERVED + 0230
 
 
 typedef struct {
@@ -62,7 +61,7 @@ typedef struct{ /**Used in the receiver to keep data together **/
 	RPCMessage rpc;
 }ClientMessage;
 
-Status DoOperation (Message *message, Message *reply, int s, SocketAddress serverSA, int localPort);
+Status DoOperation (Message *message, Message *reply, int s, SocketAddress serverSA);
 Status GetRequest (Message *callMessage, int s, SocketAddress *clientSA);
 Status SendReply (Message *replyMessage, int s, SocketAddress clientSA);
 
