@@ -10,6 +10,7 @@
 Status responderRunner(int port)
 {
 	int s = 0;
+	int tid = 0;
 	printf("Server is running on port %d...\n", port);
 	while(1)
 	{
@@ -20,8 +21,8 @@ Status responderRunner(int port)
 		void* child_stack=(void*)malloc(16384);
 		child_stack+=16383;
 		rpc_msg->stack = child_stack; /** keep a pointer to the stack **/
-		clone(receive, child_stack, CLONE_VM, rpc_msg);
-		
+		tid = clone(receive, child_stack, CLONE_VM, rpc_msg);
+		printf("Message thread started on thread ID %d\n", tid);
 	}
 	return OK;
 }
