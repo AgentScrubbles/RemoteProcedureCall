@@ -57,6 +57,7 @@ Status receive(ClientMessage* msg){
 	UDPsend(s, &responseMsg, destination);
 	printf("Response Message:\n\t%s\n", responseMsg.data);
 	printf("********************\n\n");
+	free(message);
 	return OK;
 }
 
