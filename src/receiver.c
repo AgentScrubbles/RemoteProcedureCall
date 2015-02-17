@@ -45,6 +45,7 @@ Status receive(ClientMessage* msg){
 	
 	struct sockaddr_in destination;
 	makeDestSA(&destination, message->rpc.machine, message->rpc.port);
+	printf("Socket created.\n");
 	int s = 0;
 	RPCMessage responseMessage;
 	Message responseMsg;
@@ -59,7 +60,7 @@ Status receive(ClientMessage* msg){
 	UDPsend(s, &responseMsg, destination);
 	printf("Response Message:\n\t%s\n", responseMsg.data);
 	printf("********************\n\n");
-	free(message->stack); /** Free the current stack space, may freak out **/
+	/**free(message->stack); ** Free the current stack space, may freak out **/
 	free(message);
 	return OK;
 }
