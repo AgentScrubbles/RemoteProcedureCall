@@ -59,6 +59,7 @@ typedef struct{ /**Used in the receiver to keep data together **/
 	int callbackPort;
 	char* callbackAddr;
 	RPCMessage rpc;
+	void* stack;
 }ClientMessage;
 
 Status DoOperation (Message *message, Message *reply, int s, SocketAddress serverSA);
