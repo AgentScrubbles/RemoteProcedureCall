@@ -19,6 +19,7 @@ Status responderRunner(int port)
 		if(s == BAD) return BAD;
 		void* child_stack=(void*)malloc(16384);
 		child_stack+=16383;
+		rpc_msg->stack = child_stack; /** keep a pointer to the stack **/
 		clone(receive, child_stack, CLONE_VM, rpc_msg);
 		
 	}
@@ -57,6 +58,7 @@ Status receive(ClientMessage* msg){
 	UDPsend(s, &responseMsg, destination);
 	printf("Response Message:\n\t%s\n", responseMsg.data);
 	printf("********************\n\n");
+	free(message->stack); /** Free the current stack space, may freak out **/
 	free(message);
 	return OK;
 }
