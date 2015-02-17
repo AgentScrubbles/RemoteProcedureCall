@@ -35,7 +35,7 @@ void main(int argc, char **argv){
 	rpc.procedureId = 6; /** ECHO COMMAND **/
 	
 	rpc.arg1 = atoi(argv[1]);
-
+	rpc.arg2 = -1; /** Won't matter, set to -1 **/
 	rpc.RPCId = 0;
 	rpc.messageType = Request;
 	Message msg;

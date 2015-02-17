@@ -165,7 +165,7 @@ void marshal(RPCMessage *rm, Message *message)
 
 	message->length = size;
 	unsigned char buf[size];
-	sprintf(buf, "%s,%d,%d,%d,%d,%d,%d,%d", rm->machine, rm->port, rm->RPCId, rm->procedureId, rm->arg1, rm->arg2, rm->messageType);
+	sprintf(buf, "%s,%d,%d,%d,%d,%d,%d,%d", rm->machine, rm->port, rm->RPCId, rm->procedureId, rm->arg1, rm->arg2, (int)rm->messageType);
 	message->data = malloc(sizeof(unsigned char) * size);
 	strcpy(message->data, buf);
 }

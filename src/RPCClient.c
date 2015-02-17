@@ -49,10 +49,11 @@ void main(int argc, char **argv) {
 		printf("\t3:\tDivision (/)\n");
 		printf("\t4:\tPing Server\n");
 		printf("\t5:\tStop Server\n");
+		printf("\t6:\tEcho input\n");
 		printf("\t9:\tQuit\n\n");
 		scanf("%d %d %d", &rpc.procedureId, &rpc.arg1, &rpc.arg2);
 		printf("\t%d (%d) %d = ?\n", rpc.arg1, rpc.procedureId, rpc.arg2);
-		if(rpc.procedureId == 9) return;
+		if(rpc.procedureId == 9) exit(0);
 		rpc.RPCId = 0;
 		rpc.messageType = Request;
 		Message msg; /** Initialized internally by marshall **/
