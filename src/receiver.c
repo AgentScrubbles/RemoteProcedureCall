@@ -87,6 +87,8 @@ int rpcMethod(int arg1, int arg2, int procedureID){
 		printf("Server stopping...\n\n");
 		exit(0);
 		break;
+	case 6: /** Echo command **/
+		return arg1;
 	default:
 		return arg1 + arg2;
 		break;

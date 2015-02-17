@@ -1,5 +1,9 @@
 rpc:	RPC HelloWorld
 
+Echo: RPC
+	gcc -o obj/Echo.o -c src/Echo.c
+	gcc -o bin/Echo.out -lc obj/Echo.o obj/rpc.o obj/UDPSock.o
+
 runRPCClient: RPCClient
 	bin/RPCClient.out
 	

@@ -14,6 +14,8 @@
 #include "rpc.h"
 
 void main(int argc, char **argv){
+	printf("Please know that as of now, Echo only supports INTEGER values.\n");
+	
 	if(argc <= 1){
 		printf("Error, please enter a string to echo\n");
 		exit(1);
@@ -31,10 +33,9 @@ void main(int argc, char **argv){
 	int remoteServerPort = SERVER_PORT;
 
 	rpc.procedureId = 6; /** ECHO COMMAND **/
-	/**rpc.strArg = argv[1];**/
-	memset(rpc.strArg, '\0', sizeof(char)* 100);
-	strcpy(rpc.strArg, argv[1]);
-	printf("%s\n", rpc.strArg);
+	
+	rpc.arg1 = atoi(argv[1]);
+
 	rpc.RPCId = 0;
 	rpc.messageType = Request;
 	Message msg;
