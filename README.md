@@ -40,3 +40,13 @@ platform by using ASCII.  The values follow this form:
   REQUEST/REPLY: (Integer)
       0 for request, 1 for reply
   
+Part 1:
+  Echo user input
+  
+  I built the echo function into Echo.out/c.  It takes in only INTEGER input, as adding a char* for the meantime broke my arithmitic from part 2.  The use is as follows:
+    Echo.out 77
+    
+  Echo will then return 77 from the server.  To run the server, it is the same as in part 2.  I've built in a function to make to allow this to run.  Once again, the server and client inputs are based off of constants.h, which is where the IP address / name are stored.  To run the server, use the command:
+    make runRPCServer
+    
+  This will start the server running on the specfied port from constants.h
