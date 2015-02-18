@@ -50,3 +50,23 @@ Part 1:
     make runRPCServer
     
   This will start the server running on the specfied port from constants.h
+
+  Then, to run Echo, simply run 'make Echo', or make in general, and run:
+  	Echo.out #
+	Where # is the number you would like to echo.
+
+Part 2:
+  Client receiver.
+
+  For this, the server is exactly the same, and the make command make runRPCServer will still work.  Once again, make sure all of the constants are up to date in constants.h.  The
+  server was giving a segfault sometimes while running on pyrite when I wasn't using the exact IP address of the machine.  On VM's and non-cluster computers this didn't seem to be
+  a problem, but on pyrite and popeye this did cause issues, even with localhost sometimes.
+
+  To run the client, all that is needed is to once again call 
+  	make runRPCClient
+  This will start the client and allow bring them to a menu.  From the menu, there are a bunch of options for which arithmatic service is allowed.  Please note that since
+  this is an implementation of DoOperation, it will hang if no response is provided.
+
+If there are any questions with my code, or have issues compiling, please feel free to contact me at rmcn96@iastate.edu
+
+Thank you for taking the time to read this README, hopefully it will be helpful in using my code.
