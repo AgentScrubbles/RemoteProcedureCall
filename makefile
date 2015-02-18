@@ -1,4 +1,8 @@
-rpc:	RPC HelloWorld
+rpc:	ClientServer Echo
+
+
+ClientServer: RPCClient RPCServer
+
 
 Echo: RPC
 	gcc -o obj/Echo.o -c src/Echo.c
