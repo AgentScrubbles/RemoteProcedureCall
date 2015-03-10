@@ -1,11 +1,8 @@
 Created by Robert Clabough
 
-Computer Science 454
+Remote Procedure Call.
 
-Project 1
-
-This project follows the specifications of the project 1 found at 
-  http://www.cs.iastate.edu/~cs554/RPCproject.htm
+Goal: To build a custom remote procedure call client and server for linux.  A client must be able to connect to an active server and receive messages back.  A server must be able to run continuously and handle multiple client interactions.  In this case, the simple arithmetic operations are supported, as mentioned below.
   
 How to use and compile:
 
